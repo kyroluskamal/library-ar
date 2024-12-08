@@ -1,3 +1,5 @@
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+
 export class User {
   id: number = 63;
   firstName: string = 'John';
@@ -10,3 +12,13 @@ export class User {
     zip: '10001',
   };
 }
+
+export type ModelFormGroup<T> = FormGroup<{
+  [K in keyof T]: T[K] extends Array<infer U>
+    ? U extends object
+      ? FormArray<ModelFormGroup<U>> // Supports array of objects (mapped to FormGroup)
+      : FormArray<FormControl<U>> // Supports array of primitive types (mapped to FormControl)
+    : FormControl<T[K]>; // For non-array properties
+}>;
+
+export type ModelFormArray<T> = FormArray<ModelFormGroup<T>>;

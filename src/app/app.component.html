@@ -1,47 +1,15 @@
 <div class="container">
-  <h2>Invoice</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="input-group" style="margin-bottom: 10px">
-      <input
-        type="text"
-        name="name"
-        formControlName="name"
-        placeholder="Client name"
-      />
+      <label for="birthdate">birthdate</label>
+      <input type="date" id="birthdate" formControlName="birthdate" />
+      @if(form.controls.birthdate.errors?.required) {
+      <div class="error">birthdate is required</div>
+      }
+      @if(form.controls.birthdate.errors?.minAge18) {
+      <div class="error">You can not register</div>
+      }
     </div>
-    <div class="input-group">
-      <input
-        type="email"
-        name="email"
-        formControlName="email"
-        placeholder="Email"
-      />
-    </div>
-    <hr />
-    <h3>Products</h3>
-    <button type="button" style="width: fit-content">Add</button>
-    <table>
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td><input type="text" formControlName="productName" /></td>
-          <td><input type="number" formControlName="price" /></td>
-          <td><input type="number" formControlName="quantity" /></td>
-          <td>500</td>
-          <td>
-            <button class="delete-btn">x</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
     <button type="submit" [disabled]="form.invalid">Save</button>
   </form>
 </div>

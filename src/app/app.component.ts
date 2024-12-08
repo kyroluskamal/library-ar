@@ -1,29 +1,24 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-
+import { FormBuilder, Validators } from '@angular/forms';
+import { CustomValidators } from '../CustomValidation/customvalidtors';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   styles: ``,
+  standalone: false,
 })
 export class AppComponent {
   title = 'Coding Bible library';
+  validators = [Validators.required, Validators.minLength(3)];
   fb = inject(FormBuilder);
   form = this.fb.group({
-    name: [''],
-    email: [''],
+    birthdate: ['', [Validators.required, CustomValidators.minAge18()]],
   });
   ngOnInit() {
-    const invoice = {
-      name: 'John Doe',
-      email: 'Johndoe@gmail.com',
-      products: [
-        { productName: 'Product 1', price: 100, quantity: 1 },
-        { productName: 'Product 2', price: 200, quantity: 2 },
-        { productName: 'Product 3', price: 300, quantity: 3 },
-      ],
-    };
+    this.form.valueChanges.subscribe((value) => {
+      console.log(this.form.controls.birthdate.errors);
+    });
   }
   submit() {
     if (this.form.invalid) return;
