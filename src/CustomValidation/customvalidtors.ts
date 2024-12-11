@@ -1,12 +1,33 @@
 import {
   AbstractControl,
+  FormGroup,
   ValidationErrors,
-  Validator,
   ValidatorFn,
-  Validators,
 } from '@angular/forms';
 
 export class CustomValidators {
+  static passwordMatch(formgroup: AbstractControl): ValidationErrors | null {
+    const fg = formgroup as FormGroup;
+    const password = fg.controls.password;
+    const confirmPassword = fg.controls.confirmPassword;
+
+    console.log(password, confirmPassword);
+    return password?.value === confirmPassword?.value
+      ? null
+      : { passwordMatch: true };
+  }
+  static passwordMatch2(): ValidatorFn {
+    return (formgroup: AbstractControl): ValidationErrors | null => {
+      const fg = formgroup as FormGroup;
+      const password = fg.controls.password;
+      const confirmPassword = fg.controls.confirmPassword;
+      return password?.value === confirmPassword?.value
+        ? null
+        : { passwordMatch: true };
+    };
+  }
+
+
   static minAge18(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) return null;

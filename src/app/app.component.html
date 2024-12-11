@@ -1,14 +1,19 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="input-group" style="margin-bottom: 10px">
-      <label for="birthdate">birthdate</label>
-      <input type="date" id="birthdate" formControlName="birthdate" />
-      @if(form.controls.birthdate.errors?.required) {
-      <div class="error">birthdate is required</div>
+      <label for="password">Password</label>
+      <input type="text" id="password" formControlName="password" />
+      @if(form.controls.password.errors?.required) {
+      <div class="error">password is required</div>
       }
-      @if(form.controls.birthdate.errors?.minAge18) {
-      <div class="error">You can not register</div>
+    </div>
+    <div class="input-group" style="margin-bottom: 10px">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="text" id="confirmPassword" formControlName="confirmPassword" />
+      @if(form.errors?.passwordMatch) {
+      <small class="error">passwords do not match</small>
       }
+
     </div>
     <button type="submit" [disabled]="form.invalid">Save</button>
   </form>
