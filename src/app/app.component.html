@@ -1,19 +1,24 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="input-group" style="margin-bottom: 10px">
-      <label for="password">Password</label>
-      <input type="text" id="password" formControlName="password" />
-      @if(form.controls.password.errors?.required) {
-      <div class="error">password is required</div>
+      <label for="address">Address </label>
+      <input type="text" id="address" formControlName="address" />
+      @if(form.controls.address.errors?.required) {
+      <small>Address required</small>
       }
     </div>
     <div class="input-group" style="margin-bottom: 10px">
-      <label for="confirmPassword">Confirm Password</label>
-      <input type="text" id="confirmPassword" formControlName="confirmPassword" />
-      @if(form.errors?.passwordMatch) {
-      <small class="error">passwords do not match</small>
+      <label for="skills">Skills </label>
+      <input type="text" id="skills" formControlName="skills" />
+      @if(form.controls.skills.errors?.required) {
+      <small>Skills required</small>
       }
-
+      @else if(form.controls.skills.errors?.minlength) {
+      <small class="error">Min length</small>
+      }
+    </div>
+    <div style="margin-bottom: 10px">
+      <input type="checkbox" formControlName="addAddressAndSkills" /> Add address and skills
     </div>
     <button type="submit" [disabled]="form.invalid">Save</button>
   </form>
