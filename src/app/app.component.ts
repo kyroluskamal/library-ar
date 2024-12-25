@@ -1,15 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CustomValidators } from '../CustomValidation/customvalidtors';
 
-//clearValidators
-//removeValidators
-//removeAsyncValidators
-
-//setValidators
-//addValidators
-//setAsyncValidators
-//addAsyncValidators
-//updateValueAndValidity
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,23 +11,20 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AppComponent {
   title = 'Coding Bible library';
-  valdiatoMinleng = Validators.minLength(5);
   fb = inject(FormBuilder);
   form = this.fb.group({
-    address: ['', [Validators.required]],
-    skills: ['dd', [Validators.required, this.valdiatoMinleng]],
-    addAddressAndSkills: [true],
+    email: [
+      '',
+      {
+        validators: [Validators.required],
+        asyncValidators: [CustomValidators.AsyncEmailAvaliabilityValidator2],
+        updateOn: 'blur',
+      },
+    ],
   });
   ngOnInit() {
-    this.form.controls.addAddressAndSkills.valueChanges.subscribe((checked) => {
-      if (!checked) {
-        this.form.controls.address.clearValidators();
-        this.form.controls.skills.removeValidators(this.valdiatoMinleng);
-      } else {
-        this.form.controls.address.setValidators([Validators.required]);
-        this.form.controls.skills.addValidators([this.valdiatoMinleng]);
-      }
-      this.form.updateValueAndValidity();
+    this.form.controls.email.statusChanges.subscribe((status) => {
+      console.log(status);
     });
   }
   submit() {

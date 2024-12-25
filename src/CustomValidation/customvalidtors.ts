@@ -1,11 +1,29 @@
 import {
   AbstractControl,
+  AsyncValidatorFn,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
+import { delay, Observable, of } from 'rxjs';
 
 export class CustomValidators {
+  static AsyncEmailAvaliabilityValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return of(
+        control.value === 'test@example.com' ? null : { notAvailable: true }
+      ).pipe(delay(2000));
+    };
+  }
+
+  static AsyncEmailAvaliabilityValidator2(
+    control: AbstractControl
+  ): Observable<ValidationErrors | null> {
+    return of(
+      control.value === 'test@example.com' ? null : { notAvailable: true }
+    ).pipe(delay(2000));
+  }
+
   static passwordMatch(formgroup: AbstractControl): ValidationErrors | null {
     const fg = formgroup as FormGroup;
     const password = fg.controls.password;
@@ -26,7 +44,6 @@ export class CustomValidators {
         : { passwordMatch: true };
     };
   }
-
 
   static minAge18(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

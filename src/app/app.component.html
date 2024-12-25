@@ -1,25 +1,18 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="input-group" style="margin-bottom: 10px">
-      <label for="address">Address </label>
-      <input type="text" id="address" formControlName="address" />
-      @if(form.controls.address.errors?.required) {
-      <small>Address required</small>
+      <label for="address">Email </label>
+      <input formControlName="email" placeholder="Email" />
+      @if(form.controls.email.pending){
+      <small>Validating... </small>
       }
-    </div>
-    <div class="input-group" style="margin-bottom: 10px">
-      <label for="skills">Skills </label>
-      <input type="text" id="skills" formControlName="skills" />
-      @if(form.controls.skills.errors?.required) {
-      <small>Skills required</small>
+      @if(form.controls.email.errors?.notAvailable){
+      <small>Email not available </small>
       }
-      @else if(form.controls.skills.errors?.minlength) {
-      <small class="error">Min length</small>
-      }
+
     </div>
-    <div style="margin-bottom: 10px">
-      <input type="checkbox" formControlName="addAddressAndSkills" /> Add address and skills
-    </div>
-    <button type="submit" [disabled]="form.invalid">Save</button>
+
+
+    <button type="submit" [disabled]="form.invalid || form.pending">Save</button>
   </form>
 </div>
