@@ -1,7 +1,21 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { CustomValidators } from '../CustomValidation/customvalidtors';
+import { FormBuilder } from '@angular/forms';
 
+/************************************
+ * User interaction states
+ *************************************/
+// pristine
+// dirty
+// touched
+// untouched
+// disabled
+// enabled
+/************************************
+ * Validation states
+ *************************************/
+// pending
+// valid
+// invalid
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,14 +27,8 @@ export class AppComponent {
   title = 'Coding Bible library';
   fb = inject(FormBuilder);
   form = this.fb.group({
-    email: [
-      '',
-      {
-        validators: [Validators.required],
-        asyncValidators: [CustomValidators.AsyncEmailAvaliabilityValidator2],
-        updateOn: 'blur',
-      },
-    ],
+    email: [''],
+    password: [''],
   });
   ngOnInit() {
     this.form.controls.email.statusChanges.subscribe((status) => {
@@ -30,5 +38,16 @@ export class AppComponent {
   submit() {
     if (this.form.invalid) return;
     console.log(this.form.value);
+  }
+
+  patchVallue() {
+    this.form.patchValue({
+      email: 'email@gmail.com',
+      password: 'password',
+    });
+  }
+
+  onInput() {
+    this.form.controls.password.setValue(this.form.controls.email.value + 'a');
   }
 }

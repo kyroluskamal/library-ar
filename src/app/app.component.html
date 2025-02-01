@@ -1,18 +1,233 @@
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="input-group" style="margin-bottom: 10px">
-      <label for="address">Email </label>
-      <input formControlName="email" placeholder="Email" />
-      @if(form.controls.email.pending){
-      <small>Validating... </small>
-      }
-      @if(form.controls.email.errors?.notAvailable){
-      <small>Email not available </small>
-      }
-
+    <form
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+    >
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="email">Email</label>
+            <input
+                formControlName="email"
+                placeholder="Email"
+                (input)="onInput()"
+            >
+        </div>
+        <div class="btn-group">
+            <button
+                type="button"
+                (click)="form.controls.email.markAsPristine()"
+            >
+                pristine
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.markAsDirty()"
+            >
+                Dirty
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.markAsUntouched()"
+            >
+                Untouched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.markAsTouched()"
+            >
+                Touched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.markAllAsTouched()"
+            >
+                All Touched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.markAsPending()"
+            >
+                Pending
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.enable()"
+            >
+                Enable
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.email.disable()"
+            >
+                Disable
+            </button>
+        </div>
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="password">password</label>
+            <input
+                formControlName="password"
+                placeholder="password"
+            >
+        </div>
+        <div class="btn-group">
+            <button
+                type="button"
+                (click)="form.controls.password.markAsPristine()"
+            >
+                pristine
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.markAsDirty()"
+            >
+                Dirty
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.markAsUntouched()"
+            >
+                Untouched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.markAsTouched()"
+            >
+                Touched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.markAllAsTouched()"
+            >
+                All Touched
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.markAsPending()"
+            >
+                Pending
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.enable()"
+            >
+                Enable
+            </button>
+            <button
+                type="button"
+                (click)="form.controls.password.disable()"
+            >
+                Disable
+            </button>
+        </div>
+    </form>
+    <p>For form</p>
+    <div class="btn-group">
+        <button
+            type="button"
+            (click)="form.markAsPristine()"
+        >
+            pristine
+        </button>
+        <button
+            type="button"
+            (click)="form.markAsDirty()"
+        >
+            Dirty
+        </button>
+        <button
+            type="button"
+            (click)="form.markAsUntouched()"
+        >
+            Untouched
+        </button>
+        <button
+            type="button"
+            (click)="form.markAsTouched()"
+        >
+            Touched
+        </button>
+        <button
+            type="button"
+            (click)="form.markAllAsTouched()"
+        >
+            All Touched
+        </button>
+        <button
+            type="button"
+            (click)="form.markAsPending()"
+        >
+            Pending
+        </button>
+        <button
+            type="button"
+            (click)="form.enable()"
+        >
+            Enable
+        </button>
+        <button
+            type="button"
+            (click)="form.disable()"
+        >
+            Disable
+        </button>
+        <button (click)="patchVallue()">Fill form</button>
     </div>
-
-
-    <button type="submit" [disabled]="form.invalid || form.pending">Save</button>
-  </form>
+    <p>
+        <!-- <span style="font-weight: bold;">Form Value:</span>
+        {{this.form.value | json}}
+        <br>
+        <span style="font-weight: bold;">Form raw value:</span>
+        {{this.form.getRawValue() | json}} -->
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Pristine</th>
+                <th>Dirty</th>
+                <th>untouched</th>
+                <th>touched</th>
+                <th>pending</th>
+                <th>Enabled</th>
+                <th>Disabled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row-title">Email</td>
+                <td [class.true]="form.controls.email.pristine">{{ form.controls.email.pristine }}</td>
+                <td [class.true]="form.controls.email.dirty">{{ form.controls.email.dirty }}</td>
+                <td [class.true]="form.controls.email.untouched">{{ form.controls.email.untouched }}</td>
+                <td [class.true]="form.controls.email.touched">{{ form.controls.email.touched }}</td>
+                <td [class.true]="form.controls.email.pending">{{ form.controls.email.pending }}</td>
+                <td [class.true]="form.controls.email.enabled">{{ form.controls.email.enabled }}</td>
+                <td [class.true]="form.controls.email.disabled">{{ form.controls.email.disabled }}</td>
+            </tr>
+            <tr>
+                <td class="row-title">Password</td>
+                <td [class.true]="form.controls.password.pristine">{{ form.controls.password.pristine }}</td>
+                <td [class.true]="form.controls.password.dirty">{{ form.controls.password.dirty }}</td>
+                <td [class.true]="form.controls.password.untouched">{{ form.controls.password.untouched }}</td>
+                <td [class.true]="form.controls.password.touched">{{ form.controls.password.touched }}</td>
+                <td [class.true]="form.controls.password.pending">{{ form.controls.password.pending }}</td>
+                <td [class.true]="form.controls.password.enabled">{{ form.controls.password.enabled }}</td>
+                <td [class.true]="form.controls.password.disabled">{{ form.controls.password.disabled }}</td>
+            </tr>
+            <tr>
+                <td class="row-title">Form</td>
+                <td [class.true]="form.pristine">{{ form.pristine }}</td>
+                <td [class.true]="form.dirty">{{ form.dirty }}</td>
+                <td [class.true]="form.untouched">{{ form.untouched }}</td>
+                <td [class.true]="form.touched">{{ form.touched }}</td>
+                <td [class.true]="form.pending">{{ form.pending }}</td>
+                <td [class.true]="form.enabled">{{ form.enabled }}</td>
+                <td [class.true]="form.disabled">{{ form.disabled }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

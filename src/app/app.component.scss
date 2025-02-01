@@ -7,7 +7,12 @@
   width: 100%;
   max-width: 800px;
 }
-
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
 /* Title Styling */
 h1 {
   font-size: 24px;
@@ -58,11 +63,12 @@ input:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
   outline: none;
 }
-
+input:disabled {
+  background-color: #e5e5e5;
+}
 /* Button Styling */
 button {
   display: block;
-  width: 100%;
   background-color: #007bff;
   color: #fff;
   padding: 12px;
@@ -70,10 +76,20 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 5px;
   transition: background-color 0.3s ease;
 }
-
+td {
+  color: red;
+}
+td.true {
+  color: green;
+  font-weight: bold;
+}
+.row-title {
+  color: black !important;
+  font-weight: bold;
+}
 button:hover {
   background-color: #0056b3;
 }
@@ -82,7 +98,9 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
+button[type="submit"] {
+  width: 100%;
+}
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .row {
