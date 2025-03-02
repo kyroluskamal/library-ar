@@ -1,25 +1,39 @@
 <div class="container">
+    {{user | json}}
     <form
-        [formGroup]="form2"
-        (ngSubmit)="submit()"
+        #userForm="ngForm"
+        (ngSubmit)="onSubmit(userForm, $event)"
     >
-    @for(key of formKeys ; track key){
-      <div
-          class="input-group"
-          style="margin-bottom: 10px"
-      >
-          <label for="email">Email</label>
-          <input
-              [formControlName]="key"
-              [placeholder]="key"
-          >
-      </div>
-              <button (click)="removeControl(key)">remove contorl</button>
-
-    }
-        <button (click)="addControl()">add contorl</button>
-        <button type="submit">Submit</button>
-        <button type="reset">reset</button>
-        {{form.value | json}}
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="email">Email</label>
+            <input
+                [(ngModel)]="user.email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                required
+            >
+        </div>
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="Password">Password</label>
+            <input
+                [(ngModel)]="user.password"
+                name="password"
+                id="Password"
+                placeholder="Password"
+            >
+        </div>
+        <button
+            type="submit"
+            [disabled]="userForm.invalid"
+        >
+            Submit
+        </button>
     </form>
 </div>
