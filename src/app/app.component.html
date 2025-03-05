@@ -1,6 +1,9 @@
 <div class="container">
-    {{user | json}}
+    user: {{user | json}}
+    <br>
+    userForm.value: {{userForm.value | json}}
     <form
+        [ngFormOptions]="{updateOn: 'submit'}"
         #userForm="ngForm"
         (ngSubmit)="onSubmit(userForm, $event)"
     >
@@ -11,6 +14,7 @@
             <label for="email">Email</label>
             <input
                 [(ngModel)]="user.email"
+                [ngModelOptions]="{updateOn: 'blur'}"
                 name="email"
                 id="email"
                 placeholder="Email"
@@ -29,11 +33,6 @@
                 placeholder="Password"
             >
         </div>
-        <button
-            type="submit"
-            [disabled]="userForm.invalid"
-        >
-            Submit
-        </button>
+        <button type="submit">Submit</button>
     </form>
 </div>
