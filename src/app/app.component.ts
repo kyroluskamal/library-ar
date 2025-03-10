@@ -1,8 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
+import { CustomValidators } from '../CustomValidation/customvalidtors';
+
 interface UserLogin {
-  email: string;
+  email?: string;
+  age: Date;
   password: string;
+  confirmPassword: string;
 }
 @Component({
   selector: 'app-root',
@@ -13,9 +17,16 @@ interface UserLogin {
 })
 export class AppComponent {
   title = 'Coding Bible library';
+  ngOnChanges() {
+    this.loginForm.form.controls.email.addAsyncValidators(
+      CustomValidators.AsyncEmailAvaliabilityValidator2
+    );
+  }
   user: UserLogin = {
     email: '',
+    age: new Date(),
     password: '',
+    confirmPassword: '',
   };
   formContol = new FormControl('', { updateOn: 'blur' });
   @ViewChild('userForm', { read: NgForm }) loginForm!: NgForm;

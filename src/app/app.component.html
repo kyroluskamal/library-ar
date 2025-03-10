@@ -1,9 +1,5 @@
 <div class="container">
-    user: {{user | json}}
-    <br>
-    userForm.value: {{userForm.value | json}}
     <form
-        [ngFormOptions]="{updateOn: 'submit'}"
         #userForm="ngForm"
         (ngSubmit)="onSubmit(userForm, $event)"
     >
@@ -13,12 +9,35 @@
         >
             <label for="email">Email</label>
             <input
+                type="email"
                 [(ngModel)]="user.email"
                 [ngModelOptions]="{updateOn: 'blur'}"
                 name="email"
                 id="email"
-                placeholder="Email"
-                required
+                placeholder="email"
+                #email="ngModel"
+                emailAsync
+            >
+            @if(email.touched && email.hasError('required')){
+              <small class="error">Email is required</small>
+            }
+            @if(email.touched && email.hasError('notAvailable')){
+              <small class="error">Email not avaliable</small>
+            }
+
+        </div>
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="age">Age</label>
+            <input
+                type="date"
+                [(ngModel)]="user.age"
+                name="age"
+                id="age"
+                placeholder="age"
+                minAge18
             >
         </div>
         <div
@@ -33,6 +52,23 @@
                 placeholder="Password"
             >
         </div>
-        <button type="submit">Submit</button>
+        <div
+            class="input-group"
+            style="margin-bottom: 10px"
+        >
+            <label for="Password">Confirm Password</label>
+            <input
+                [(ngModel)]="user.confirmPassword"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="confirmPassword"
+            >
+        </div>
+        <button
+            type="submit"
+            [disabled]="userForm.invalid"
+        >
+            Submit
+        </button>
     </form>
 </div>

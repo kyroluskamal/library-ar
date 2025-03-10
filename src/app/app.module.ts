@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { MinAge18Directive } from './min-age18.directive';
+import { EmailAsyncDirective } from './email-async.directive';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +16,8 @@ import { JsonPipe } from '@angular/common';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    MinAge18Directive,
+    EmailAsyncDirective,
   ],
   exports: [],
   providers: [],
