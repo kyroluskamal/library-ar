@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { CustomValidators } from '../CustomValidation/customvalidtors';
+import { IProductService, ProductService } from '../services/ProductService';
 
 interface UserLogin {
   email?: string;
   age: Date;
-  password: string;
-  confirmPassword: string;
+  address: {
+    city: string;
+    state: string;
+  };
 }
 @Component({
   selector: 'app-root',
@@ -17,27 +20,21 @@ interface UserLogin {
 })
 export class AppComponent {
   title = 'Coding Bible library';
-  ngOnChanges() {
-    this.loginForm.form.controls.email.addAsyncValidators(
-      CustomValidators.AsyncEmailAvaliabilityValidator2
-    );
+  products: any[] = [];
+  constructor(private productService: IProductService) {
+    this.products = productService.getProducts();
   }
   user: UserLogin = {
     email: '',
     age: new Date(),
-    password: '',
-    confirmPassword: '',
+    address: {
+      city: 'New York',
+      state: 'NY',
+    },
   };
-  formContol = new FormControl('', { updateOn: 'blur' });
-  @ViewChild('userForm', { read: NgForm }) loginForm!: NgForm;
-  onSubmit(ngForm: NgForm, event: any) {
-    if (this.loginForm.invalid) {
-      console.error('Form is invalid');
-      return;
-    }
 
+  onSubmit(ngForm: NgForm, event: any) {
     console.log('Form submitted', this.user);
-    console.log('Form submitted', this.loginForm.value);
     console.log('Form submitted', ngForm.value);
   }
 }

@@ -11,12 +11,10 @@
             <input
                 type="email"
                 [(ngModel)]="user.email"
-                [ngModelOptions]="{updateOn: 'blur'}"
                 name="email"
                 id="email"
                 placeholder="email"
                 #email="ngModel"
-                emailAsync
             >
             @if(email.touched && email.hasError('required')){
               <small class="error">Email is required</small>
@@ -37,33 +35,34 @@
                 name="age"
                 id="age"
                 placeholder="age"
-                minAge18
             >
         </div>
-        <div
-            class="input-group"
-            style="margin-bottom: 10px"
-        >
-            <label for="Password">Password</label>
-            <input
-                [(ngModel)]="user.password"
-                name="password"
-                id="Password"
-                placeholder="Password"
-            >
-        </div>
-        <div
-            class="input-group"
-            style="margin-bottom: 10px"
-        >
-            <label for="Password">Confirm Password</label>
-            <input
-                [(ngModel)]="user.confirmPassword"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="confirmPassword"
-            >
-        </div>
+        <fieldset>
+          <legend>Address</legend>
+          <ng-container ngModelGroup="address" #address="ngModelGroup">
+            <div class="input-group" style="margin-bottom: 10px">
+                <label for="city">City</label>
+                <input
+                    type="text"
+                    [(ngModel)]="user.address.city"
+                    name="city"
+                    id="city"
+                    placeholder="City"
+                    required
+                >
+            </div>
+            <div class="input-group" style="margin-bottom: 10px">
+                <label for="state">State</label>
+                <input
+                    type="text"
+                    [(ngModel)]="user.address.state"
+                    name="state"
+                    id="state"
+                    placeholder="State"
+                >
+            </div>
+          </ng-container>
+        </fieldset>
         <button
             type="submit"
             [disabled]="userForm.invalid"

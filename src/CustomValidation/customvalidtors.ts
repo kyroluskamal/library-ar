@@ -29,7 +29,6 @@ export class CustomValidators {
     const password = fg.controls.password;
     const confirmPassword = fg.controls.confirmPassword;
 
-    console.log(password, confirmPassword);
     return password?.value === confirmPassword?.value
       ? null
       : { passwordMatch: true };
@@ -45,23 +44,39 @@ export class CustomValidators {
     };
   }
 
-  static minAge18(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (!control.value) return null;
-      const birthdate = new Date(control.value);
-      const today = new Date();
-      let age = new Date().getFullYear() - birthdate.getFullYear();
+  // static minAge18(): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     if (!control.value) return null;
+  //     const birthdate = new Date(control.value);
+  //     const today = new Date();
+  //     let age = new Date().getFullYear() - birthdate.getFullYear();
 
-      const monthdiff = today.getMonth() - birthdate.getMonth();
-      if (
-        monthdiff < 0 ||
-        (monthdiff === 0 && today.getDate() < birthdate.getDate())
-      ) {
-        age--;
-      }
+  //     const monthdiff = today.getMonth() - birthdate.getMonth();
+  //     if (
+  //       monthdiff < 0 ||
+  //       (monthdiff === 0 && today.getDate() < birthdate.getDate())
+  //     ) {
+  //       age--;
+  //     }
 
-      return age >= 18 ? null : { minAge18: true };
-    };
+  //     return age >= 18 ? null : { minAge18: true };
+  //   };
+  // }
+  static minAge18(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) return null;
+    const birthdate = new Date(control.value);
+    const today = new Date();
+    let age = new Date().getFullYear() - birthdate.getFullYear();
+
+    const monthdiff = today.getMonth() - birthdate.getMonth();
+    if (
+      monthdiff < 0 ||
+      (monthdiff === 0 && today.getDate() < birthdate.getDate())
+    ) {
+      age--;
+    }
+
+    return age >= 18 ? null : { minAge18: true };
   }
   // static minAge18(control: AbstractControl): ValidationErrors | null {
   //   if (!control.value) return null;
