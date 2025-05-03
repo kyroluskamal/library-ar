@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { MinAge18Directive } from './min-age18.directive';
 import { EmailAsyncDirective } from './email-async.directive';
+import { ProductModule } from '../product/product.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { EmailAsyncDirective } from './email-async.directive';
     FormsModule,
     MinAge18Directive,
     EmailAsyncDirective,
+    ProductModule,
   ],
   exports: [],
   providers: [],

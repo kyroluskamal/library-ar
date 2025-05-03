@@ -20,21 +20,13 @@ interface UserLogin {
 })
 export class AppComponent {
   title = 'Coding Bible library';
-  products: any[] = [];
-  constructor(private productService: IProductService) {
-    this.products = productService.getProducts();
-  }
-  user: UserLogin = {
-    email: '',
-    age: new Date(),
-    address: {
-      city: 'New York',
-      state: 'NY',
-    },
-  };
-
-  onSubmit(ngForm: NgForm, event: any) {
-    console.log('Form submitted', this.user);
-    console.log('Form submitted', ngForm.value);
-  }
+  // products = [
+  //   { id: 1, name: 'Laptop Model X', description: 'A fast and light laptop.' },
+  //   { id: 2, name: 'Large Monitor', description: 'A 27-inch IPS monitor.' },
+  //   {
+  //     id: 3,
+  //     name: 'Wireless Mouse',
+  //     description: 'An ergonomic wireless mouse.',
+  //   },
+  // ];
 }
