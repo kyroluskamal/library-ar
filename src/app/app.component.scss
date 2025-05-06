@@ -1,142 +1,68 @@
-/* Login Container */
-.container {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 800px;
+/* --- تنسيقات شريط التصفح الفاتح --- */
+
+.simple-light-navbar {
+  background-color: #ffffff; /* خلفية بيضاء */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف تحت الشريط */
+  padding: 10px 0; /* مسافة داخلية فوق وتحت */
+  font-family: "Arial", sans-serif; /* نوع خط بسيط */
 }
-.btn-group {
+
+.navbar-content {
+  max-width: 1150px; /* عرض المحتوى الأقصى */
+  margin: 0 auto; /* المحتوى في النص */
+  padding: 0 25px; /* مسافة على الجناب */
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-/* Title Styling */
-h1 {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Form Row Styling */
-.row {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-fieldset {
-  border: 1px solid #b7b3b3;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-/* Input Group */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-bottom: 10px;
-}
-
-.input-group label {
-  font-size: 14px;
-  color: #555;
+.brand-logo a {
+  color: #343a40; /* لون أسود/رمادي غامق للاسم */
+  font-size: 1.7em;
   font-weight: bold;
-  margin-bottom: 8px;
+  text-decoration: none;
 }
 
-/* Input Fields */
-input {
-  font-size: 14px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
-  outline: none;
-}
-input:disabled {
-  background-color: #e5e5e5;
-}
-/* Button Styling */
-button {
-  display: block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 5px;
-  transition: background-color 0.3s ease;
-}
-td {
-  color: red;
-}
-td.true {
-  color: green;
-  font-weight: bold;
-}
-.row-title {
-  color: black !important;
-  font-weight: bold;
-}
-button:hover {
-  background-color: #0056b3;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-button[type="submit"] {
-  width: 100%;
-}
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .row {
-    flex-direction: column;
-  }
-}
-
-.delete-btn {
+/* تنسيق قايمة اللينكات */
+.nav-links-list {
+  list-style: none;
   margin: 0;
-  padding: 3px;
-  background-color: red;
-}
-.delete-btn:hover {
-  background-color: rgb(156, 6, 6);
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-small {
-  color: red;
-}
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+  padding: 0;
+  display: flex;
 }
 
-th {
-  background-color: #f2f2f2;
+.nav-item {
+  margin-left: 30px; /* نزود المسافة بين اللينكات شوية */
 }
 
-td {
-  background-color: #fff;
+/* تنسيق اللينكات نفسها */
+.nav-link {
+  color: #5a6268; /* لون رمادي متوسط للينكات */
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 10px 5px; /* مساحة فوق وتحت، وشوية صغيرة يمين وشمال */
+  /* هنحط بوردر شفاف تحت اللينك العادي عشان نحجزله مكان
+    وميحصلش زقزقة لما البوردر الملون يظهر في اللينك النشط
+  */
+  border-bottom: 4px solid transparent;
+  transition: color 0.25s ease, border-bottom-color 0.25s ease; /* حركة ناعمة */
 }
 
-/* Error Message */
+/* تنسيق اللينك لما الماوس يجي فوقه */
+.nav-link:hover {
+  color: #0056b3; /* لون أزرق أغمق شوية */
+}
+
+/* --- تنسيق اللينك النشط --- */
+.nav-link.active-nav-item {
+  color: #007bff; /* لون أزرق سماوي للخط */
+  border-bottom-color: #007bff; /* لون الخط الأزرق اللي تحت */
+  font-weight: 600; /* خط سميك شوية (Semi-bold) */
+}
+
+/* تنسيق منطقة المحتوى الرئيسية (اختياري) */
+.main-app-content {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 20px;
+}

@@ -1,2 +1,32 @@
-<h1>Welcome to {{title}}</h1>
-<router-outlet/>
+<nav class="simple-light-navbar">
+    <div class="navbar-content">
+        <div class="brand-logo">
+            <a [routerLink]="['/']">Coding Bible Ecommerce</a>
+        </div>
+        <ul class="nav-links-list">
+            <li class="nav-item">
+                <a
+                    [routerLink]="['/']"
+                    routerLinkActive="active-nav-item"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    [routerLink]="['','product']"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    routerLinkActive="active-nav-item"
+                    class="nav-link"
+                >
+                    Products
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main class="main-app-content">
+    <router-outlet></router-outlet>
+</main>
