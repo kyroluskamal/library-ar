@@ -1,12 +1,22 @@
 <h2>
-    Product Details (Example for Product ID: 1)
+    Product Details (Example for Product ID: {{productDetails()?.id}})
 </h2>
-<p style="color: green; font-weight: bold; margin-top: 15px;">
-    Product details for the requested product should be displayed here...
-</p>
+<p style="color: green; font-weight: bold; margin-top: 15px;">{{productDetails()?.name}}</p>
 <p>
-    1) Laptop Model X	A fast and light laptop.
+    {{productDetails()?.id}}) {{productDetails()?.name}}.
 </p>
+
+
+
+
+
+<div style="margin-top: 20px;">
+    <button (click)="onBack()">Back</button>
+    <button (click)="onNext()">Next</button>
+</div>
+
+
+
 
 
 

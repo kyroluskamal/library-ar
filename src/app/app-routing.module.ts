@@ -9,13 +9,13 @@ const routes: Routes = [
     component: ProductListComponent,
   },
   {
-    path: 'product/1',
+    path: 'product/:id',
     component: ProductDetailsComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
