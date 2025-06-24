@@ -12,7 +12,7 @@
     <td>{{p.id}}</td>
     <td>{{p.name}}</td>
     <td>{{p.description}}</td>
-    <td ><a [routerLink]="['1']"
+    <td ><a [routerLink]="[p.id]"
       [queryParams]="{action:'view', id: '1'}"
       fragment="top">View</a></td>
     <!-- <td ><button (click)="goToProductDetails(1)">View</button></td> -->
@@ -21,3 +21,5 @@
 </tbody>
 
 </table>
+
+<router-outlet/>
