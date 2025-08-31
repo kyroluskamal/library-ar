@@ -6,16 +6,8 @@ import { ProductDetailsComponent } from '../product/product-details/product-deta
 const routes: Routes = [
   {
     path: 'product',
-    children: [
-      {
-        path: '',
-        component: ProductListComponent,
-      },
-      {
-        path: ':id',
-        component: ProductDetailsComponent,
-      },
-    ],
+    loadChildren: () =>
+      import('../product/product.module').then((m) => m.ProductModule),
   },
 ];
 

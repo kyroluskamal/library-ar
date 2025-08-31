@@ -19,7 +19,6 @@ import { ProductModule } from '../product/product.module';
     FormsModule,
     MinAge18Directive,
     EmailAsyncDirective,
-    ProductModule,
   ],
   exports: [],
   providers: [],
