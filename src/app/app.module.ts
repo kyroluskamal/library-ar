@@ -8,9 +8,12 @@ import { JsonPipe } from '@angular/common';
 import { MinAge18Directive } from './min-age18.directive';
 import { EmailAsyncDirective } from './email-async.directive';
 import { ProductModule } from '../product/product.module';
+import { HomeComponent } from '../home/home.component';
+import { NewHomeComponent } from '../new-home/new-home.component';
+import { RedirectComponent } from '../redirect/redirect.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent, NewHomeComponent, RedirectComponent],
   imports: [
     AppRoutingModule,
     JsonPipe,
