@@ -21,6 +21,7 @@ export class ProductListComponent {
       description: 'An ergonomic wireless mouse.',
     },
   ];
+  urlTree = this.router.createUrlTree(['product']);
   goToProductDetails(productId: number) {
     this.router.navigate([productId], {
       relativeTo: this.activatedRroute,

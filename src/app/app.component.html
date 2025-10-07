@@ -18,6 +18,8 @@
                 <a
                     [routerLink]="['','product']"
                     [routerLinkActiveOptions]="{ exact: true }"
+                    [queryParams]="{page:1}"
+                    [fragment]="'loading'"
                     routerLinkActive="active-nav-item"
                     class="nav-link"
                 >
