@@ -11,9 +11,10 @@ import { ProductModule } from '../product/product.module';
 import { HomeComponent } from '../home/home.component';
 import { NewHomeComponent } from '../new-home/new-home.component';
 import { RedirectComponent } from '../redirect/redirect.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NewHomeComponent, RedirectComponent],
+  declarations: [AppComponent, HomeComponent, NewHomeComponent, RedirectComponent, NotFoundComponent],
   imports: [
     AppRoutingModule,
     JsonPipe,

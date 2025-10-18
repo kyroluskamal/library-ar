@@ -1,32 +1,11 @@
-import { inject, NgModule } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from '../product/product-list/product-list.component';
-import { ProductDetailsComponent } from '../product/product-details/product-details.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
-import { NewHomeComponent } from '../new-home/new-home.component';
-import { FeatureFlagService } from '../services/feature.service';
-// '/'+'product'+''
+import { NotFoundComponent } from '../not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: (redirectData) => {
-      const router = inject(Router);
-      const featureService = inject(FeatureFlagService);
-      const activatedRoute = inject(ActivatedRoute);
-
-      const target = featureService.getFlags().newHome
-        ? ['new-home']
-        : ['home'];
-      return router.createUrlTree(target, {
-        relativeTo: activatedRoute,
-        queryParams: {
-          dddddd: 2,
-          page: 222,
-        },
-        preserveFragment: true,
-        queryParamsHandling: 'merge',
-      });
-    },
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -34,13 +13,13 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'new-home',
-    component: NewHomeComponent,
-  },
-  {
     path: 'product',
     loadChildren: () =>
       import('../product/product.module').then((m) => m.ProductModule),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 
