@@ -13,10 +13,18 @@ export class ProductListComponent {
   private readonly router = inject(Router);
   private readonly activatedRroute = inject(ActivatedRoute);
   products = [
-    { id: 1, name: 'Laptop Model X', description: 'A fast and light laptop.' },
-    { id: 2, name: 'Large Monitor', description: 'A 27-inch IPS monitor.' },
     {
-      id: 3,
+      id: 'a1235b',
+      name: 'Laptop Model X',
+      description: 'A fast and light laptop.',
+    },
+    {
+      id: 'a1275b',
+      name: 'Large Monitor',
+      description: 'A 27-inch IPS monitor.',
+    },
+    {
+      id: 'a1735b',
       name: 'Wireless Mouse',
       description: 'An ergonomic wireless mouse.',
     },

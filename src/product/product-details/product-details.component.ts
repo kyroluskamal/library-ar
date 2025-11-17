@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
 }
@@ -25,10 +25,18 @@ export class ProductDetailsComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly route = inject(Router);
   products = [
-    { id: 1, name: 'Laptop Model X', description: 'A fast and light laptop.' },
-    { id: 2, name: 'Large Monitor', description: 'A 27-inch IPS monitor.' },
     {
-      id: 3,
+      id: 'a1235b',
+      name: 'Laptop Model X',
+      description: 'A fast and light laptop.',
+    },
+    {
+      id: 'a1275b',
+      name: 'Large Monitor',
+      description: 'A 27-inch IPS monitor.',
+    },
+    {
+      id: 'a1735b',
       name: 'Wireless Mouse',
       description: 'An ergonomic wireless mouse.',
     },
@@ -37,7 +45,7 @@ export class ProductDetailsComponent {
     return this.loadPorductDetails();
   });
   action = input<string>();
-  id = input<number>();
+  id = input<string>();
   ngOnInit() {
     console.log(this.action());
   }
