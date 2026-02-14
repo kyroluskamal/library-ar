@@ -4,11 +4,15 @@ import {
   inject,
   input,
   Input,
+  signal,
   SimpleChange,
   SimpleChanges,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-interface Product {
+import { ProductService } from '../product.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+export interface Product {
   id: string;
   name: string;
   description: string;
@@ -22,36 +26,14 @@ interface Product {
   styleUrl: './product-details.component.scss',
 })
 export class ProductDetailsComponent {
-  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly route = inject(Router);
-  products = [
-    {
-      id: 'a1235b',
-      name: 'Laptop Model X',
-      description: 'A fast and light laptop.',
-    },
-    {
-      id: 'a1275b',
-      name: 'Large Monitor',
-      description: 'A 27-inch IPS monitor.',
-    },
-    {
-      id: 'a1735b',
-      name: 'Wireless Mouse',
-      description: 'An ergonomic wireless mouse.',
-    },
-  ];
-  productDetails = computed<Product | undefined>(() => {
-    return this.loadPorductDetails();
-  });
+  @Input() product: Product | undefined;
   action = input<string>();
   id = input<string>();
   ngOnInit() {
-    console.log(this.action());
-  }
-
-  loadPorductDetails() {
-    return this.products.find((product) => product.id == this.id());
+    // this.activatedRoute.data.subscribe((data) => {
+    //   this.productDetails.set(data['product']);
+    // });
   }
 
   onBack() {

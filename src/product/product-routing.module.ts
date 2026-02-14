@@ -8,6 +8,8 @@ import {
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductNotFoundComponent } from './product-not-found/product-not-found.component';
+import { ProductResolverService } from './product-resolver.service';
+import { productResolver } from './product.resolver';
 const productIdMatcher: UrlMatcher = (url): UrlMatchResult | null => {
   console.log(url);
   if (url.length === 1 && /^[A-Za-z]\d{4}[A-Za-z]$/.test(url[0].path)) {
@@ -29,7 +31,9 @@ const routes: Routes = [
   {
     component: ProductDetailsComponent,
     matcher: productIdMatcher,
-    resolve
+    resolve: {
+      product: productResolver,
+    },
   },
   {
     path: '**',

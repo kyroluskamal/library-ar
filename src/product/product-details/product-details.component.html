@@ -1,10 +1,10 @@
 <h2>
-    Product Details (Example for Product ID: {{productDetails()?.id}})
+    Product Details (Example for Product ID: {{product?.id}})
 </h2>
-<p style="color: green; font-weight: bold; margin-top: 15px;">{{productDetails()?.name}}</p>
-<p>
-    {{productDetails()?.id}}) {{productDetails()?.name}}.
-</p>
+<p style="color: green; font-weight: bold; margin-top: 15px;">{{product?.name}}</p>
+<p>{{product?.id}}) {{product?.name}}.</p>
+
+
 
 
 
@@ -14,6 +14,8 @@
     <button (click)="onBack()">Back</button>
     <button (click)="onNext()">Next</button>
 </div>
+
+
 
 
 
