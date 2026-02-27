@@ -11,6 +11,7 @@ export class User {
     state: 'NY',
     zip: '10001',
   };
+  role: string = 'admin';
 }
 
 export type ModelFormGroup<T> = FormGroup<{

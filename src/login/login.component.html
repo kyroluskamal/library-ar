@@ -1,0 +1,102 @@
+<div class="login-page">
+    <div class="login-card">
+        <div class="brand">
+            <div
+                class="logo"
+                aria-hidden="true"
+            >
+                K
+            </div>
+            <div class="brand-text">
+                <h1>Welcome back</h1>
+                <p>Sign in to continue</p>
+            </div>
+        </div>
+
+
+        <form
+            [formGroup]="form"
+            class="form"
+            autocomplete="on"
+            (ngSubmit)="login()"
+        >
+            <label class="field">
+                <span class="label">Email</span>
+                <input
+                    type="email"
+                    formControlName="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                >
+            </label>
+
+
+            <label class="field">
+                <span class="label">Password</span>
+                <div class="password">
+                    <input
+                        formControlName="password"
+                        type="password"
+                        placeholder="••••••••"
+                        autocomplete="current-password"
+                    >
+                    <button
+                        type="button"
+                        class="ghost"
+                        aria-label="Show password"
+                    >
+                        Show
+                    </button>
+                </div>
+            </label>
+
+
+            <div class="row">
+                <label class="check">
+                    <input type="checkbox">
+                    <span>Remember me</span>
+                </label>
+
+
+                <a
+                    class="link"
+                    href="#"
+                >
+                    Forgot password?
+                </a>
+            </div>
+
+
+            <button
+                class="btn"
+                type="submit"
+            >
+                Sign in
+            </button>
+
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+
+            <button
+                class="btn outline"
+                type="button"
+            >
+                Continue with Google
+            </button>
+
+
+            <p class="muted">
+                Don’t have an account?
+                <a
+                    class="link"
+                    href="#"
+                >
+                    Create one
+                </a>
+            </p>
+        </form>
+    </div>
+</div>
