@@ -30,6 +30,11 @@
     </div>
 </nav>
 <main class="main-app-content">
+  @if(loading){
+    <div style="position:fixed;top:0;left:0;right:0;padding:8px;background:#222;color:#fff">
+      Loading...
+    </div>
+  }
     <router-outlet></router-outlet>
 
 

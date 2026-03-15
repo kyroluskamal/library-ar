@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminClassGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   authService = inject(AuthService);
   router = inject(Router);
   canActivate(
@@ -20,14 +20,14 @@ export class AdminClassGuard implements CanActivate {
     state: RouterStateSnapshot,
   ): MaybeAsync<GuardResult> {
     console.log(
-      '%c[%cAdminGuard%c] running for:' + state.url,
+      '%c[%cLoginGuard%c] running for:' + state.url,
       'color:#ff4d4d',
-      'color:#bf8bff; font-weight:700',
+      'color:#4da3ff; font-weight:700',
+      'color:#ff4d4d',
     );
-    if (!this.authService.isAdmin()) {
-      return this.router.createUrlTree(['/access-denied']);
-      // this.router.navigateByUrl('/access-denied');
-      // return false;
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+      return false;
     }
     return true;
   }

@@ -63,6 +63,10 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.storageKey);
   }
+  async isLoggedInAsync(): Promise<boolean> {
+    await new Promise<void>((r) => setTimeout(r, 5000));
+    return !!this.getCurrentUser();
+  }
   isLoggedIn(): boolean {
     return !!this.getCurrentUser();
   }

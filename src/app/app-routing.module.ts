@@ -6,7 +6,7 @@ import { AdminDashComponent } from '../admin-dash/admin-dash.component';
 import { LoginComponent } from '../login/login.component';
 import { AccessDeniedComponent } from '../access-denied/access-denied.component';
 import { AdminClassGuard } from '../guards/admin-class.guard';
-import { adminGuard } from '../guards/admin.guard';
+import { LoginAsyncGuard } from '../guards/loginAsync.guard';
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +33,8 @@ const routes: Routes = [
   {
     path: 'admindash',
     component: AdminDashComponent,
-    canActivate: [adminGuard],
+    canActivate: [LoginAsyncGuard, AdminClassGuard],
+    title: 'Admin Dashboard',
   },
   {
     path: '**',
